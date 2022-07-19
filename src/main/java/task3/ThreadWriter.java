@@ -26,8 +26,6 @@ public class ThreadWriter implements Runnable {
 
             synchronized (file) {
                 int current = aInteger.incrementAndGet();
-                System.out.println("Поток - " + Thread.currentThread().getName()
-                        + " значение переменной: " + current + "\n");
 
                 writerToOwn.write(current + " ");
                 writerToOwn.flush();
