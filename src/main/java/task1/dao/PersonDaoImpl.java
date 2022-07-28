@@ -7,6 +7,7 @@ import task1.model.Person;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Map;
 
 public class PersonDaoImpl implements PersonDao {
 
@@ -80,6 +81,23 @@ public class PersonDaoImpl implements PersonDao {
         } catch (Exception e) {
             tx.rollback();
             e.printStackTrace();
+        }
+        return persons;
+    }
+
+
+    public List<Person> getLastNameAndDocNumber(String lastName){
+        Transaction tx = null;
+        List<Person> persons = null;
+
+        try(Session session = sessionFactory.openSession()){
+            String hqlQuery = "select * from persons p left join " +
+            "(select * from my_db.documents d " +
+            "where  d.is_active  = :isActive ) actd  on p.document_id = actd.id";
+
+            TypedQuery<Person> query = session.createSQLQuery(hqlQuery);
+               query.setParameter("isActive", true);
+            persons = query.getResultList();
         }
         return persons;
     }

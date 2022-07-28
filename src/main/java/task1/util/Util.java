@@ -8,6 +8,9 @@ import org.hibernate.service.ServiceRegistry;
 import task1.model.Document;
 import task1.model.Person;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.Properties;
 
 public class Util {
@@ -22,6 +25,8 @@ public class Util {
 
     private final static String PASSWORD = "root";
     private static final Properties settings = new Properties();
+
+
 
     static {
         settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
@@ -43,10 +48,13 @@ public class Util {
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();
             this.sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
+
+
 
     public SessionFactory getSessionFactory() {
         return sessionFactory;

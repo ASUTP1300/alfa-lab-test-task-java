@@ -33,4 +33,9 @@ public class PersonServiceImpl implements PersonService {
     public List<Person> findByDocumentNum(String num, Boolean isActive) {
         return dao.findByDocumentNum(num, isActive);
     }
+
+    @Override
+    public List<Person> getLastNameAndDocNumber(String lastName) {
+        return dao.getLastNameAndDocNumber(lastName);
+    }
 }

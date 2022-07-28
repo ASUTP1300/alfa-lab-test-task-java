@@ -10,7 +10,7 @@ import task1.util.Util;
 
 public class Main {
     public static void main(String[] args) {
-        Document document1 = new Document("473777", "паспорт", true);
+        Document document1 = new Document("473777", "паспорт", false);
         Document document2 = new Document("473001", "паспорт", true);
         Document document3 = new Document("473777", "паспорт", false);
 
@@ -25,6 +25,8 @@ public class Main {
         personService.add(person2);
         personService.add(person3);
 
-        System.out.println(personDao.findByDocumentNum("777", true));
+       // System.out.println(personDao.findByDocumentNum("777", true));
+        System.out.println(personDao.getLastNameAndDocNumber("Манасипов"));
+
     }
 }

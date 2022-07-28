@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Grouper {
 
-    public static Map<String, List<Person>> groupByName(List<Person> persons){
-        return persons.stream().collect(Collectors.groupingBy(Person::getName));
+    public  static <T extends NamedObject> Map<String, List<T>> groupByName(List<T> namedObjects){
+        return namedObjects.stream().collect(Collectors.groupingBy(T ::getName));
     }
 }

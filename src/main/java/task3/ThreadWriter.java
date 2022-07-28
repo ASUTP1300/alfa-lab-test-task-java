@@ -19,17 +19,14 @@ public class ThreadWriter implements Runnable {
 
     @Override
     public void run() {
-
-
         try (FileWriter writerToOwn = new FileWriter(formatThreadName(Thread.currentThread().getName()) + ".txt",
                 true);) {
-
             synchronized (file) {
                 int current = aInteger.incrementAndGet();
 
-                writerToOwn.write(current + " ");
+                writerToOwn.write(current + " " + Thread.currentThread() + "\n");
                 writerToOwn.flush();
-                writerToCommon.write(current + " ");
+                writerToCommon.write(current + " " + Thread.currentThread() + "\n");
                 writerToCommon.flush();
             }
         } catch (IOException e) {

@@ -12,4 +12,6 @@ public interface PersonService {
 
     List<Person> getAll();
     List<Person> findByDocumentNum(String num, Boolean isActive);
+
+    List<Person> getLastNameAndDocNumber(String lastName);
 }
